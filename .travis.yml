@@ -1,0 +1,15 @@
+language: php
+
+dist: xenial
+
+php:
+  - 7.2
+
+sudo: false
+
+before_script:
+  - travis_retry composer self-update
+  - travis_retry composer install --no-interaction --prefer-dist
+
+script:
+  - composer test
