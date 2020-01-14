@@ -15,7 +15,10 @@ $ composer require gordesch/cine-carbon:^1.0.0
 ## Usage
 
 ```php
+use Gordesch\CineCarbon;
+
 CineCarbon::now()->startOfWeek()->dayOfWeek;     // 3 (Wednesday)
+CineCarbon::now()->programmingWeek(); // i.e. "2019-03"
 ```
 
 ## License
