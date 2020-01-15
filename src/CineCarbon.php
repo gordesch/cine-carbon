@@ -17,6 +17,14 @@ class CineCarbon extends Carbon
         $this->locale($locale_cinema);
     }
 
+    public static function createFromProgrammingWeek(string $programming_week): CineCarbon
+    {
+        $datetime = new static();
+        list($year, $week) = explode('-', $programming_week);
+        $datetime->setIsoDate($year, $week, self::WEDNESDAY)->setTime(0, 0);
+        return $datetime;
+    }
+
     public function programmingWeek(): string {
         while ($this->toMutable()->dayOfWeek !== CARBON::WEDNESDAY) {
             $this->subDay();
