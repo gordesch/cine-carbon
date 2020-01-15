@@ -1,11 +1,14 @@
 <?php
 
+
 namespace Gordesch;
 
+
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Carbon\Translator;
 
-class CineCarbon extends Carbon
+class CineCarbonImmutable extends CarbonImmutable
 {
     use CineDate;
 

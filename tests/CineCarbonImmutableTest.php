@@ -5,19 +5,19 @@ use PHPUnit\Framework\TestCase;
 use Carbon\Carbon;
 use Gordesch\CineCarbon;
 
-final class CineCarbonTest extends TestCase
+final class CineCarbonImmutableTest extends TestCase
 {
     public function testFirstDayOfWeekIsWednesday(): void
     {
         $this->assertEquals(
-            CineCarbon::now()->startOfWeek()->dayOfWeek,
+            CineCarbonImmutable::now()->startOfWeek()->dayOfWeek,
             Carbon::WEDNESDAY
         );
     }
 
     public function testProgrammingWeekIsDifferentFromCalendarWeek(): void
     {
-        $monday = CineCarbon::parse('next monday');
+        $monday = CineCarbonImmutable::parse('next monday');
         $this->assertNotEquals(
             $monday->isoFormat('GGGG-WW'),
             $monday->programmingWeek()
@@ -26,7 +26,7 @@ final class CineCarbonTest extends TestCase
 
     public function testCreatedProgrammingWeekStartsOnWednesday(): void
     {
-        $week = CineCarbon::createFromProgrammingWeek(CineCarbon::now()->programmingWeek());
+        $week = CineCarbonImmutable::createFromProgrammingWeek(CineCarbonImmutable::now()->programmingWeek());
         $week_start = $week->startOfWeek();
         $this->assertEquals(
             $week_start->dayOfWeekIso,
@@ -36,7 +36,7 @@ final class CineCarbonTest extends TestCase
 
     public function testCreatedProgrammingWeekEndsOnTuesday(): void
     {
-        $week = CineCarbon::createFromProgrammingWeek(CineCarbon::now()->programmingWeek());
+        $week = CineCarbon::createFromProgrammingWeek(CineCarbonImmutable::now()->programmingWeek());
         $week_end = $week->endOfWeek();
         $this->assertEquals(
             $week_end->dayOfWeekIso,
@@ -46,7 +46,7 @@ final class CineCarbonTest extends TestCase
 
     public function testCreatedProgrammingWeekHasOnlyOneWeekNumber(): void
     {
-        $week = CineCarbon::createFromProgrammingWeek(CineCarbon::now()->programmingWeek());
+        $week = CineCarbonImmutable::createFromProgrammingWeek(CineCarbonImmutable::now()->programmingWeek());
         $week_start = $week->startOfWeek();
         $week_end = $week->endOfWeek();
         $this->assertEquals(
